@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Stateless;
 using Stateless.Graph;
 using System.IO;
-using BigIron.Sates;
+using BigIron.States;
 
 namespace BigIron
 {
@@ -18,13 +18,13 @@ namespace BigIron
         private enum Trigger {StartGame,PauseGame,UnpauseGame,Lose,Win,ReturnToMenu}
         private readonly StateMachine<State,Trigger> _machine;
         private State previousPauseState;
-
+        _elapsedTime = 0;
         public GameStateManager(Main parentGame)
         {
             _game = parentGame;
 
             _machine = new StateMachine<State, Trigger>(State.Menu);
-
+            
             _machine.Configure(State.Menu)
                 .Permit(Trigger.StartGame, State.Game)
                 .Permit(Trigger.PauseGame, State.Paused)
@@ -35,7 +35,7 @@ namespace BigIron
                 .Permit(Trigger.Win, State.Ending)
                 .OnEntry(() => previousPauseState = State.Game)
                 .OnEntryFrom(Trigger.StartGame,OnGameStart)
-                .Ignore(Trigger.StartGame);                
+                .Ignore(Trigger.StartGame);
             _machine.Configure(State.Paused)
                 .Permit(Trigger.PauseGame, previousPauseState);
             _machine.Configure(State.GameOver)

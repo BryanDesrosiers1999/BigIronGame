@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BigIron.Sates
+namespace BigIron.States
 {
     public abstract class AState
     {
