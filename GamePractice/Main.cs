@@ -1,5 +1,5 @@
 ﻿using System;
-using BigIron.Sates;
+using BigIron.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -13,13 +13,12 @@ namespace BigIron
     /// </summary>
     public class Main : Game
     {
+
         private AState _currentState;
-        private AState _nextState;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        GameStateManager stateManager;
-        
+        GameStateManager stateManager;        
 
         public void ChangeState(AState state)
         {
@@ -32,15 +31,18 @@ namespace BigIron
             stateManager = new GameStateManager(this);
             Content.RootDirectory = "Content";
         }
+
         protected override void Initialize()
         {           
             base.Initialize();
         }
+
         protected override void LoadContent()
         {
             _currentState = new MenuState(this, graphics.GraphicsDevice, Content, stateManager);
             spriteBatch = new SpriteBatch(GraphicsDevice);                    
         }
+
         protected override void UnloadContent()
         {
  
@@ -55,6 +57,7 @@ namespace BigIron
                 base.Update(gameTime);
             }
         }
+
         protected override void Draw(GameTime gameTime)
         {
             _currentState.Draw(gameTime, spriteBatch);           

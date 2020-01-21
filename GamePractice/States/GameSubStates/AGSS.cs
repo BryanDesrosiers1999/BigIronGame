@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GamePractice.StateManagers;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -7,15 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BigIron.Sates
+namespace BigIron.States
 {
-    public abstract class AState
+    public abstract class AGSS
     {
         #region Fields
         protected ContentManager _content;
         protected GraphicsDevice _graphicsDevice;
         protected Main _game;
-        protected GameStateManager _stateManager;
+        protected GSSManager _stateManager;
         #endregion
 
         #region Methods
@@ -26,7 +27,7 @@ namespace BigIron.Sates
 
         public abstract void Update(GameTime gameTime);
 
-        public AState(Main game, GraphicsDevice graphicsDevice, ContentManager content,GameStateManager stateManager)
+        public AGSS(Main game, GraphicsDevice graphicsDevice, ContentManager content, GSSManager stateManager)
         {
             _content = content;
             _graphicsDevice = graphicsDevice;
