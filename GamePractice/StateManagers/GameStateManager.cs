@@ -18,7 +18,7 @@ namespace BigIron
         private enum Trigger {StartGame,PauseGame,UnpauseGame,Lose,Win,ReturnToMenu}
         private readonly StateMachine<State,Trigger> _machine;
         private State previousPauseState;
-        _elapsedTime = 0;
+        
         public GameStateManager(Main parentGame)
         {
             _game = parentGame;
@@ -48,7 +48,6 @@ namespace BigIron
         private void OnGameStart()
         {
             _game.ChangeState(new GameState(_game, _game.GraphicsDevice, _game.Content, this));
-
         }
         private string ToDotGraph()
         {
@@ -57,6 +56,14 @@ namespace BigIron
         public void StartGame()
         {
             _machine.Fire(Trigger.StartGame);
+        }
+        public void WinGame()
+        {
+            _machine.Fire(Trigger.Win);
+        }
+        public void Death()
+        {
+            _machine.Fire(Trigger.Lose);
         }
     }
 }

@@ -15,8 +15,6 @@ namespace BigIron.States
     {
         private Song _bigIron;
 
-        private int _elapsedTime;
-
         public GameState(Main game, GraphicsDevice graphicsDevice,ContentManager content,GameStateManager stateManager) : base(game,graphicsDevice,content,stateManager)
         {
             _game = game;
@@ -27,18 +25,11 @@ namespace BigIron.States
             Initialize();
         }
 
-        private void OnTimedEvent(Object source, ElapsedEventArgs e)
-        {
-            _elapsedTime++;
-            if(_elapsedTime > 5)
-            {
-
-            }
-        }
+       
 
         private void Initialize()
         {
-            _elapsedTime = 0;
+            
             _bigIron = _content.Load<Song>("Big Iron");
             MediaPlayer.Play(_bigIron);
             _timer.Enabled = true;            
