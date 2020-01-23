@@ -7,6 +7,10 @@ using Microsoft.Xna.Framework.Media;
 using Stateless;
 using System.Timers;
 using BigIron;
+using BigIron.States;
+using GamePractice.States;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 
 namespace GamePractice.StateManagers
 {
@@ -14,9 +18,17 @@ namespace GamePractice.StateManagers
     {
         private GameStateManager _father;
 
+        private GameState _gameState;
+
         private Timer _timer;
 
         private int _elapsedTime;
+
+        private GraphicsDevice _graphicsDevice;
+
+        private ContentManager _content;
+
+       
 
         private enum GSState {Intro,Stage1,Stage2,Stage3,Death,Win}
 
@@ -24,23 +36,31 @@ namespace GamePractice.StateManagers
 
         private StateMachine<GSState,GSTrigger> _machine;
 
-        public GSSManager(GameStateManager father)
+        public GSSManager(GameStateManager father,GameState gameState, GraphicsDevice graphicsDevice,ContentManager content)
         {
+
+            _father = father;
+
+            _gameState = gameState;
+
             Initialize();
         }
 
         private void Initialize()
         {
+
+
             _timer = new Timer(1000);
             _timer.Elapsed += OnTimedEvent;
             _elapsedTime = 0;
             _timer.Enabled = true;
 
-            _machine = new StateMachine<GSState, GSTrigger>(GSState.Stage1);
+            _machine = new StateMachine<GSState, GSTrigger>(GSState.Intro);
             _machine.Configure(GSState.Intro)
                 .Permit(GSTrigger.NextStage, GSState.Stage1);
             _machine.Configure(GSState.Stage1)
-                .Permit(GSTrigger.NextStage, GSState.Stage2);
+                .Permit(GSTrigger.NextStage, GSState.Stage2)
+                .OnEntry(() => _gameState.ChangeState(new Stage1(_gameState,_graphicsDevice,_content,this)));               
             _machine.Configure(GSState.Stage2)
                 .Permit(GSTrigger.NextStage, GSState.Stage3);
             _machine.Configure(GSState.Stage3)

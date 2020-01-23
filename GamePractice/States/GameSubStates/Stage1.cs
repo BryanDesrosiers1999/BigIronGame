@@ -14,24 +14,28 @@ namespace GamePractice.States
 {
     class Stage1 : AGSS
     {
-        public Stage1(Main game,GraphicsDevice graphicsDevice, ContentManager content, GSSManager stateManager) : base(game,graphicsDevice,content,stateManager)
+        public Stage1(GameState game, GraphicsDevice graphicsDevice, ContentManager content, GSSManager stateManager) : base(game, graphicsDevice, content, stateManager)
         {
+
+            _gameState = game;
+            _graphicsDevice = graphicsDevice;
+            _content = content;
+            _stateManager = stateManager;
 
         }
-
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            _graphicsDevice.Clear(Color.AntiqueWhite);          
         }
 
         public override void PostUpdate(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            
         }
 
         public override void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

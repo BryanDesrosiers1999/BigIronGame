@@ -49,9 +49,14 @@
     <Compile Include="Panels\TextPanel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="States\GameSubStates\AGSS.cs" />
     <Compile Include="States\AState.cs" />
+    <Compile Include="States\GameSubStates\Intro.cs" />
     <Compile Include="States\MenuState.cs" />
     <Compile Include="States\GameState.cs" />
+    <Compile Include="States\GameSubStates\Stage1.cs" />
+    <Compile Include="States\GameSubStates\Stage2.cs" />
+    <Compile Include="States\GameSubStates\Stage3.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

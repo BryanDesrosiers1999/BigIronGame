@@ -62,7 +62,6 @@ namespace BigIron.States
         private void StartGame_Click(object sender, EventArgs e)
         {
             _stateManager.StartGame();
-
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {

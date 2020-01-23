@@ -15,7 +15,7 @@ namespace BigIron.States
         #region Fields
         protected ContentManager _content;
         protected GraphicsDevice _graphicsDevice;
-        protected Main _game;
+        protected GameState _gameState;
         protected GSSManager _stateManager;
         #endregion
 
@@ -27,11 +27,11 @@ namespace BigIron.States
 
         public abstract void Update(GameTime gameTime);
 
-        public AGSS(Main game, GraphicsDevice graphicsDevice, ContentManager content, GSSManager stateManager)
+        public AGSS(GameState gameState, GraphicsDevice graphicsDevice, ContentManager content, GSSManager stateManager)
         {
             _content = content;
             _graphicsDevice = graphicsDevice;
-            _game = game;
+            _gameState = gameState;
             _stateManager = stateManager;
         }
         #endregion
